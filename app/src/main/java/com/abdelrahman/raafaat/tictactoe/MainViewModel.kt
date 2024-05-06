@@ -32,6 +32,27 @@ class MainViewModel : ViewModel() {
     }
 
     private fun checkGameState() {
+        val winningCombinations = listOf(
+            listOf(0, 1, 2), listOf(3, 4, 5), listOf(6, 7, 8), // Rows
+            listOf(0, 3, 6), listOf(1, 4, 7), listOf(2, 5, 8), // Columns
+            listOf(0, 4, 8), listOf(2, 4, 6) // Diagonals
+        )
+
+        for (combination in winningCombinations) {
+            val winner = checkWinning(board, *combination.toIntArray())
+            if (winner != null) {
+                isGameOver = true
+                return
+            }
+        }
+
+        if (board.all { it.isNotEmpty() }) {
+            isGameOver = true
+        }
     }
 
+    private fun checkWinning(board: List<String>, vararg positions: Int): String? {
+        val symbols = positions.map { board[it] }.toSet()
+        return if (symbols.size == 1 && symbols.first().isNotEmpty()) symbols.first() else null
+    }
 }

@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen(viewModel.board){index ->
+                    MainScreen(viewModel.board, viewModel.isGameOver) { index ->
                         viewModel.play(index)
                     }
                 }
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(bord: List<String>, onclick: (Int) -> Unit) {
+fun MainScreen(bord: List<String>, isGameOver: Boolean, onclick: (Int) -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
     ) {
@@ -47,7 +47,7 @@ fun MainScreen(bord: List<String>, onclick: (Int) -> Unit) {
             modifier = Modifier.padding(horizontal = 10.dp)
         ) {
             items(9) { index ->
-                TicTacToeCell(bord[index], index) {
+                TicTacToeCell(bord[index], index, isGameOver) {
                     onclick(index)
                 }
             }
@@ -59,7 +59,7 @@ fun MainScreen(bord: List<String>, onclick: (Int) -> Unit) {
 @Composable
 fun GreetingPreview() {
     TicTacToeTheme {
-        MainScreen(arrayListOf("X", "O", "X", "O", "O", "X", "O", "X", "O")) {
+        MainScreen(arrayListOf("X", "O", "X", "O", "O", "X", "O", "X", "O"), false) {
 
         }
     }
