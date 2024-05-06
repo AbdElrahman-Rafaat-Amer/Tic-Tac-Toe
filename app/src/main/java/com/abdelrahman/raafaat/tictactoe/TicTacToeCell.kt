@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun TicTacToeCell(
-    text: String, index: Int, onclick: () -> Unit
+    text: String, index: Int, isGameOVer: Boolean, onclick: () -> Unit
 ) {
     val screenHeight = LocalConfiguration.current.screenHeightDp.dp
     val itemHeight = (screenHeight / 2) / 3
@@ -30,7 +30,7 @@ fun TicTacToeCell(
         modifier = Modifier
             .height(itemHeight)
             .background(Color.LightGray)
-            .clickable(text.isEmpty()) {
+            .clickable(text.isEmpty() && !isGameOVer) {
                 onclick()
             },
         horizontalAlignment = Alignment.CenterHorizontally,
