@@ -1,4 +1,4 @@
-package com.abdelrahman.raafaat.tictactoe.ui.theme
+package com.abdelrahman.raafat.tictactoe.ui.theme
 
 import android.app.Activity
 import android.os.Build
