@@ -1,4 +1,4 @@
-package com.abdelrahman.raafaat.tictactoe
+package com.abdelrahman.raafat.tictactoe
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.abdelrahman.raafaat.tictactoe.ui.theme.TicTacToeTheme
+import com.abdelrahman.raafat.tictactoe.ui.theme.TicTacToeTheme
 
 class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModels()
