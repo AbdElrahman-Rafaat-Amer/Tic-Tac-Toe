@@ -47,7 +47,10 @@ class MainActivity : ComponentActivity() {
                         viewModel.board,
                         viewModel.isGameOver,
                         viewModel.isPlayerXTurn,
-                        viewModel.winner
+                        viewModel.winner,
+                        viewModel.playerXScore,
+                        viewModel.drawScore,
+                        viewModel.playerOScore
                     ) { index ->
                         viewModel.play(index)
                     }
@@ -63,6 +66,9 @@ fun MainScreen(
     isGameOver: Boolean,
     isPlayerXTurn: Boolean,
     winner: String,
+    playerXScore: Int,
+    drawScore: Int,
+    playerOScore: Int,
     onclick: (Int) -> Unit
 ) {
     Column(
@@ -71,6 +77,31 @@ fun MainScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+
+        //Show the game states view
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 7.dp)
+        ) {
+            Text(
+                text = "Player X: $playerXScore",
+                fontSize = 20.sp
+            )
+
+            Text(
+                text = "DRAW: $drawScore",
+                fontSize = 20.sp
+            )
+
+            Text(
+                text = "Player O: $playerOScore",
+                fontSize = 20.sp
+            )
+        }
+        Spacer(modifier = Modifier.height(70.dp))
 
         //Show the player turn view
         val playerTurnAlpha = if (isGameOver) 0f else 1f
@@ -144,7 +175,8 @@ fun GreetingPreview() {
     TicTacToeTheme {
         MainScreen(
             arrayListOf("X", "O", "X", "O", "O", "X", "O", "X", "O"),
-            false, false, "DRAW"
+            true, false, "DRAW",
+            2, 3, 4
         ) {
 
         }

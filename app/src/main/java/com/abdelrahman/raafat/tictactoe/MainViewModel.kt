@@ -1,6 +1,7 @@
 package com.abdelrahman.raafat.tictactoe
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,15 @@ class MainViewModel : ViewModel() {
 
     var winner by mutableStateOf("")
         private set
+
+    var playerXScore by mutableIntStateOf(0)
+        private set
+
+    var drawScore by mutableIntStateOf(0)
+        private set
+    var playerOScore by mutableIntStateOf(0)
+        private set
+
 
     fun play(move: Int) {
         if (isGameOver) return
@@ -46,6 +56,11 @@ class MainViewModel : ViewModel() {
             if (winner != null) {
                 isGameOver = true
                 this.winner = "Player $winner won"
+                if (winner == PLAYER_X){
+                    playerXScore++
+                }else{
+                    playerOScore++
+                }
                 return
             }
         }
@@ -53,6 +68,7 @@ class MainViewModel : ViewModel() {
         if (board.all { it.isNotEmpty() }) {
             isGameOver = true
             winner = "DRAW"
+            drawScore++
         }
     }
 
