@@ -1,4 +1,4 @@
-package com.abdelrahman.raafaat.tictactoe
+package com.abdelrahman.raafat.tictactoe
 
 import org.junit.Test
 
