@@ -1,9 +1,13 @@
 package com.abdelrahman.raafat.tictactoe
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+
+const val PLAYER_X = "X" //player 1
+const val PLAYER_O = "O" //player 2 or computer
 
 class MainViewModel : ViewModel() {
     var board by mutableStateOf(listOf("", "", "", "", "", "", "", "", ""))
@@ -11,23 +15,32 @@ class MainViewModel : ViewModel() {
 
     var isGameOver by mutableStateOf(false)
         private set
+    var isPlayerXTurn by mutableStateOf(true)
+        private set
 
-    private val PLAYER_X = "X" //player 1
-    private val PLAYER_O = "O" //player 2 or computer
-    private var isPlayerX = false
+    var winner by mutableStateOf("")
+        private set
+
+    var playerXScore by mutableIntStateOf(0)
+        private set
+
+    var drawScore by mutableIntStateOf(0)
+        private set
+    var playerOScore by mutableIntStateOf(0)
+        private set
 
 
     fun play(move: Int) {
         if (isGameOver) return
 
-        isPlayerX = !isPlayerX
         board = board.toMutableList().also {
-            it[move] = if (isPlayerX) {
+            it[move] = if (isPlayerXTurn) {
                 PLAYER_X
             } else {
                 PLAYER_O
             }
         }
+        isPlayerXTurn = !isPlayerXTurn
         checkGameState()
     }
 
@@ -42,12 +55,20 @@ class MainViewModel : ViewModel() {
             val winner = checkWinning(board, *combination.toIntArray())
             if (winner != null) {
                 isGameOver = true
+                this.winner = "Player $winner won"
+                if (winner == PLAYER_X){
+                    playerXScore++
+                }else{
+                    playerOScore++
+                }
                 return
             }
         }
 
         if (board.all { it.isNotEmpty() }) {
             isGameOver = true
+            winner = "DRAW"
+            drawScore++
         }
     }
 
