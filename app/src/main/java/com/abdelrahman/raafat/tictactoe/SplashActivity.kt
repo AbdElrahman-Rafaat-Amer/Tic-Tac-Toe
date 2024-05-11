@@ -2,7 +2,6 @@ package com.abdelrahman.raafat.tictactoe
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -34,7 +33,6 @@ class SplashActivity : ComponentActivity() {
                 )
 
                 if (progress == 1.0f) {
-                    Log.d("TAG", "Greeting: Animation completes")
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
