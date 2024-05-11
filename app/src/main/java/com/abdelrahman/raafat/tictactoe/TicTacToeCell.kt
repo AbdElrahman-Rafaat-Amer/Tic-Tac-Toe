@@ -1,7 +1,6 @@
 package com.abdelrahman.raafat.tictactoe
 
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,7 +28,6 @@ fun TicTacToeCell(
     Column(
         modifier = Modifier
             .height(itemHeight)
-            .background(Color.LightGray)
             .clickable(text.isEmpty() && !isGameOVer) {
                 onclick()
             },
@@ -42,13 +40,10 @@ fun TicTacToeCell(
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Red)
-
         ) {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    .background(Color.LightGray)
                     .fillMaxSize()
             ) {
                 Text(
@@ -56,11 +51,12 @@ fun TicTacToeCell(
                     style = TextStyle(
                         textAlign = TextAlign.Center,
                         fontSize = 35.sp
-                    )
+                    ),
+                    color = if (text == PLAYER_X) Color.Red else Color.Blue
                 )
             }
             if ((index + 1) % 3 != 0) {
-                LineDemo(true, strokeWidth = 6)
+                LineDemo(true)
             }
         }
 

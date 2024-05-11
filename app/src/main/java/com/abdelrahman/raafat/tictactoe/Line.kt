@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LineDemo(isVertical: Boolean, strokeWidth: Int = 4) {
+fun LineDemo(isVertical: Boolean, strokeWidth: Int = 6) {
     var endY = 0f
     var modifier = Modifier.fillMaxWidth()
     if (isVertical) {
