@@ -1,4 +1,4 @@
-package com.abdelrahman.raafat.tictactoe.splash
+package com.abdelrahman.raafat.tictactoe.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

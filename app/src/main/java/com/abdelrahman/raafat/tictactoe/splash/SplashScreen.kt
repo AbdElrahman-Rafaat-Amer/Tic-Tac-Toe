@@ -3,6 +3,7 @@ package com.abdelrahman.raafat.tictactoe.splash
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.tooling.preview.Preview
 import com.abdelrahman.raafat.tictactoe.R
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun SplashScreen(onboardingViewModel: OnboardingViewModel) {
+fun SplashScreen(onAnimationEnded : () -> Unit) {
     val preloaderLottieCompositionResult = rememberLottieComposition(
         LottieCompositionSpec.RawRes(
             R.raw.splash_icon
@@ -31,14 +32,20 @@ fun SplashScreen(onboardingViewModel: OnboardingViewModel) {
         LaunchedEffect(true) {
             this.launch {
                 delay(preloaderLottieComposition!!.duration.toLong())
-                onboardingViewModel.showOnBoardingScreens()
+                onAnimationEnded()
             }
         }
     } else {
-        if (progress == 1.0f && !onboardingViewModel.isSplashScreenEnded) {
-            onboardingViewModel.showOnBoardingScreens()
+        if (progress == 1.0f) {
+            onAnimationEnded()
         }
     }
+}
 
+@Preview
+@Composable
+fun SplashScreenPreview() {
+    SplashScreen{
 
+    }
 }

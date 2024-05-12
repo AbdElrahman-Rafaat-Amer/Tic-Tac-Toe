@@ -1,4 +1,4 @@
-package com.abdelrahman.raafat.tictactoe.splash
+package com.abdelrahman.raafat.tictactoe.onboarding
 
 import android.app.Application
 import androidx.compose.runtime.getValue
@@ -11,13 +11,10 @@ import com.abdelrahman.raafat.tictactoe.R
 import com.abdelrahman.raafat.tictactoe.ui.theme.DodgerBlue
 import com.abdelrahman.raafat.tictactoe.ui.theme.NaturalGray
 
-const val TAG = "OnboardingViewModel"
 
 class OnboardingViewModel(private val application: Application) : AndroidViewModel(application) {
 
     private val screenNumbers = 3
-    var isSplashScreenEnded by mutableStateOf(false)
-        private set
 
     var isOnboardingEnded by mutableStateOf(false)
         private set
@@ -52,6 +49,9 @@ class OnboardingViewModel(private val application: Application) : AndroidViewMod
     var description by mutableStateOf("")
         private set
 
+    init {
+        updateUIElements()
+    }
 
     private fun updateUIElements() {
         title = when (currentScreenIndex) {
@@ -91,10 +91,5 @@ class OnboardingViewModel(private val application: Application) : AndroidViewMod
             isOnboardingEnded = true
         }
 
-    }
-
-    fun showOnBoardingScreens() {
-        updateUIElements()
-        isSplashScreenEnded = true
     }
 }
