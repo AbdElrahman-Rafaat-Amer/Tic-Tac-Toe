@@ -72,7 +72,6 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
     //Lottie
-    implementation("com.airbnb.android:lottie-compose:6.0.1")
-
+    implementation("com.airbnb.android:lottie-compose:4.0.0")
 
 }

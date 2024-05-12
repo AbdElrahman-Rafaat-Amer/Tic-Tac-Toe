@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="welcome">Welcome</string>
+    <string name="scoreboard">Scoreboard</string>
+    <string name="compete">Compete</string>
+    <string name="welcome_description">One of the oldest world games now available on your smartphone device!</string>
+    <string name="compete_description">Play the game with your friends, and prove that you’re a worthy opponent!</string>
+    <string name="scoreboard_description">Earn points and make your own way to the top of the scoreboard!</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="title_activity_onboarding">OnboardingActivity</string>
 </resources>

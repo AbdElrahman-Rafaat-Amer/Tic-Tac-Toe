@@ -11,3 +11,5 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val BlueCustom = Color(0xFF3871df)
+val DodgerBlue = Color(0xFF46A3FF)
+val NaturalGray = Color(0xFFE3E3E3)
