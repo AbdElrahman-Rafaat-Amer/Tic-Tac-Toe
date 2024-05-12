@@ -1,18 +1,19 @@
 package com.abdelrahman.raafat.tictactoe.splash
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.tooling.preview.Preview
 import com.abdelrahman.raafat.tictactoe.R
-import com.abdelrahman.raafat.tictactoe.ui.theme.TicTacToeTheme
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @Composable
-fun SplashScreen(navigateToNextScreen: () -> Unit) {
+fun SplashScreen(onboardingViewModel: OnboardingViewModel) {
     val preloaderLottieCompositionResult = rememberLottieComposition(
         LottieCompositionSpec.RawRes(
             R.raw.splash_icon
@@ -26,17 +27,18 @@ fun SplashScreen(navigateToNextScreen: () -> Unit) {
         composition = preloaderLottieComposition
     )
 
-    if (progress == 1.0f) {
-        navigateToNextScreen()
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SplashScreenPreview() {
-    TicTacToeTheme {
-        SplashScreen() {
-
+    if (preloaderLottieComposition != null) {
+        LaunchedEffect(true) {
+            this.launch {
+                delay(preloaderLottieComposition!!.duration.toLong())
+                onboardingViewModel.showOnBoardingScreens()
+            }
+        }
+    } else {
+        if (progress == 1.0f && !onboardingViewModel.isSplashScreenEnded) {
+            onboardingViewModel.showOnBoardingScreens()
         }
     }
+
+
 }

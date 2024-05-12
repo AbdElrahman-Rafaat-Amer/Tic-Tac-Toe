@@ -23,13 +23,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.abdelrahman.raafat.tictactoe.R
 import com.abdelrahman.raafat.tictactoe.RoundView
-import com.abdelrahman.raafat.tictactoe.ui.theme.DodgerBlue
-import com.abdelrahman.raafat.tictactoe.ui.theme.NaturalGray
 
 
 @Composable
 fun OnboardingScreen(
-    currentScreenIndex: Int, viewModel: OnboardingViewModel
+    onboardingViewModel: OnboardingViewModel
 ) {
 
     Column {
@@ -41,18 +39,18 @@ fun OnboardingScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(viewModel.getImage),
+                painter = painterResource(onboardingViewModel.getImage),
                 contentDescription = null,
             )
             Spacer(modifier = Modifier.height(100.dp))
             Text(
-                text = viewModel.title,
+                text = onboardingViewModel.title,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.SemiBold
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = viewModel.description,
+                text = onboardingViewModel.description,
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(horizontal = 20.dp)
@@ -67,8 +65,12 @@ fun OnboardingScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            val alpha = if (currentScreenIndex == 0) 0f else 1f
-            TextButton(onClick = { viewModel.onBackClicked() }, modifier = Modifier.alpha(alpha)) {
+
+            TextButton(
+                onClick = { onboardingViewModel.onBackClicked() },
+                enabled = onboardingViewModel.isBackButtonEnabled,
+                modifier = Modifier.alpha(onboardingViewModel.backButtonAlpha)
+            ) {
                 Text(
                     text = stringResource(id = R.string.back),
                     fontSize = 18.sp,
@@ -80,20 +82,20 @@ fun OnboardingScreen(
             Row {
                 RoundView(
                     size = 15.dp,
-                    backgroundColor = if (currentScreenIndex == 0) DodgerBlue else NaturalGray
+                    backgroundColor = onboardingViewModel.firstDotColor
                 )
                 RoundView(
                     size = 15.dp,
-                    backgroundColor = if (currentScreenIndex == 1) DodgerBlue else NaturalGray,
+                    backgroundColor = onboardingViewModel.secondDotColor,
                     modifier = Modifier.padding(horizontal = 6.dp)
                 )
                 RoundView(
                     size = 15.dp,
-                    backgroundColor = if (currentScreenIndex == 2) DodgerBlue else NaturalGray
+                    backgroundColor = onboardingViewModel.thirdDotColor
                 )
             }
 
-            TextButton(onClick = { viewModel.onNextClicked() }) {
+            TextButton(onClick = { onboardingViewModel.onNextClicked() }) {
                 Text(
                     text = stringResource(id = R.string.next),
                     fontSize = 18.sp,
