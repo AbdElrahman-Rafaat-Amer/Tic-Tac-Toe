@@ -10,4 +10,7 @@
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="title_activity_onboarding">OnboardingActivity</string>
+    <string name="computer">Computer</string>
+    <string name="friend">Friend</string>
+    <string name="online">Online</string>
 </resources>

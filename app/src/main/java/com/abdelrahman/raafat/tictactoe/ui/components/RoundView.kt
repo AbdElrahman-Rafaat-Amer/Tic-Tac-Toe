@@ -1,4 +1,4 @@
-package com.abdelrahman.raafat.tictactoe
+package com.abdelrahman.raafat.tictactoe.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

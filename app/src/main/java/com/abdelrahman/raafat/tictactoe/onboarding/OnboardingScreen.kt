@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.abdelrahman.raafat.tictactoe.R
-import com.abdelrahman.raafat.tictactoe.RoundView
+import com.abdelrahman.raafat.tictactoe.ui.components.RoundView
 
 
 @Composable
