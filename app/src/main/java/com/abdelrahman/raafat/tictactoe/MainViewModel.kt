@@ -10,6 +10,9 @@ const val PLAYER_X = "X" //player 1
 const val PLAYER_O = "O" //player 2 or computer
 
 class MainViewModel : ViewModel() {
+    var startPlaying by mutableStateOf(false)
+        private set
+
     var board by mutableStateOf(listOf("", "", "", "", "", "", "", "", ""))
         private set
 
@@ -75,5 +78,17 @@ class MainViewModel : ViewModel() {
     private fun checkWinning(board: List<String>, vararg positions: Int): String? {
         val symbols = positions.map { board[it] }.toSet()
         return if (symbols.size == 1 && symbols.first().isNotEmpty()) symbols.first() else null
+    }
+
+    fun playWithComputer() {
+        //ToDO will be implemented later
+    }
+
+    fun playWithFriend() {
+        startPlaying = true
+    }
+
+    fun playOnline() {
+        //ToDO will be implemented later
     }
 }

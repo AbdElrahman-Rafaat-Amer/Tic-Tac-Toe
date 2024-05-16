@@ -17,10 +17,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.abdelrahman.raafat.tictactoe.ui.components.RoundedCardView
 
-const val TAG = "MenuScreen"
 
 @Composable
-fun MenuScreen() {
+fun MenuScreen(viewModel: MainViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -42,17 +41,17 @@ fun MenuScreen() {
         ) {
 
             RoundedCardView(text = stringResource(id = R.string.computer)) {
-
+                viewModel.playWithComputer()
             }
             Spacer(modifier = Modifier.height(30.dp))
 
             RoundedCardView(text = stringResource(id = R.string.friend)) {
-
+                viewModel.playWithFriend()
             }
             Spacer(modifier = Modifier.height(30.dp))
 
             RoundedCardView(text = stringResource(id = R.string.online)) {
-
+                viewModel.playOnline()
             }
 
         }
@@ -62,5 +61,5 @@ fun MenuScreen() {
 @Preview(showBackground = true)
 @Composable
 fun MenuScreenPreview() {
-    MenuScreen()
+    MenuScreen(MainViewModel())
 }
