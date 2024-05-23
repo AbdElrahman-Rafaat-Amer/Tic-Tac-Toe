@@ -13,4 +13,8 @@
     <string name="computer">Computer</string>
     <string name="friend">Friend</string>
     <string name="online">Online</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="onboarding_dialog_title">Show Onboarding</string>
+    <string name="onboarding_dialog_description">Do you want to show onboarding screens every time you open the app?</string>
 </resources>

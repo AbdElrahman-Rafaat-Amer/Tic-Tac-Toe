@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
+import com.abdelrahman.raafat.tictactoe.PreferencesManager
 import com.abdelrahman.raafat.tictactoe.R
 import com.abdelrahman.raafat.tictactoe.ui.theme.DodgerBlue
 import com.abdelrahman.raafat.tictactoe.ui.theme.NaturalGray
@@ -20,6 +21,9 @@ class OnboardingViewModel(private val application: Application) : AndroidViewMod
         private set
 
     var isBackButtonEnabled by mutableStateOf(false)
+        private set
+
+    var showDialog by mutableStateOf(false)
         private set
 
     private var currentScreenIndex = 0
@@ -88,8 +92,14 @@ class OnboardingViewModel(private val application: Application) : AndroidViewMod
         if (currentScreenIndex < screenNumbers) {
             updateUIElements()
         } else {
-            isOnboardingEnded = true
+            showDialog = true
         }
 
+    }
+
+    fun dismissDialog(showOnboardingNextTime: Boolean) {
+        PreferencesManager.saveBoolean(application.applicationContext, "SHOW_ONBOARDING", showOnboardingNextTime)
+        showDialog = false
+        isOnboardingEnded = true
     }
 }
